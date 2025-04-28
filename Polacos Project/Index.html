@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polaco's Gym</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Polaco's Gym</h1>
+
+  <!-- Botón para mostrar/ocultar formulario de registro -->
+  <button id="btnShowForm">Registrar Nuevo Cliente</button>
+
+  <!-- Formulario de Registro / Edición -->
+  <div id="formContainer" style="display:none;">
+    <form id="clientForm">
+      <input type="hidden" id="clientId">
+      <input type="text" id="nombre" placeholder="Nombre" required><br>
+      <input type="text" id="apellido" placeholder="Apellido" required><br>
+      <input type="date" id="fechaInscripcion" required><br>
+      <input type="tel" id="telefono" placeholder="Teléfono" required><br>
+      <input type="number" id="peso" placeholder="Peso (kg)" required><br>
+      <input type="text" id="pesoLibras" placeholder="Peso (libras)" readonly><br>
+      <button type="button" id="btnAddPhoto">Añadir Foto</button><br>
+      <input type="file" id="inputPhoto" accept="image/*" capture="camera" style="display:none;">
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+
+  <!-- Buscador -->
+  <input type="text" id="searchInput" placeholder="Buscar cliente por nombre o teléfono">
+
+  <!-- Contenedor de clientes -->
+  <div id="clientsContainer"></div>
+
+  <!-- Contenedor QR -->
+  <div id="qrContainer" style="display:none;">
+    <span id="closeQrBtn">X</span>
+    <img id="qrImage" src="" alt="Código QR" />
+  </div>
+
+  <script src="scripts.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registrado'))
+        .catch((err) => console.error('Error registrando SW:', err));
+    }
+  </script>
+</body>
+</html>
